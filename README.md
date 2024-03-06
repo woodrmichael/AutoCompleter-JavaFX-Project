@@ -7,8 +7,8 @@ You will revisit this project in furture lab assignments.
 
 [Link to assignment](https://csse.msoe.us/csc1120/lab8)
 
-* [ ] Commit 1 "AutoCompleter Comments"
-  - Rename the `username` package to match your MSOE username
+* [x] Commit 1 "AutoCompleter Comments"
+  - Rename the `woodm` package to match your MSOE woodm
   - Update the comments for the `AutoCompleter` interface
 * [ ] Commit 2 "format() implementation"
   - Implement the `AutoCompleter.format()` method.
