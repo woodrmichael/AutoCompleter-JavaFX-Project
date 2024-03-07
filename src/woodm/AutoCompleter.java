@@ -58,40 +58,40 @@ public interface AutoCompleter {
      * @return a human-friendly string representing the number of nanoseconds.
      */
     static String format(long nanoseconds) {
-        final long nsToDay = 86_400_000_000_000L;
+        final long nsInDay = 86_400_000_000_000L;
         final long nsToHr = 3_600_000_000_000L;
-        final long nsToMin = 60_000_000_000L;
-        final long nsToS = 1_000_000_000;
-        final long nsToMs = 1_000_000;
-        final long nsToMicros = 1_000;
+        final long nsInMin = 60_000_000_000L;
+        final long nsInS = 1_000_000_000;
+        final long nsInMs = 1_000_000;
+        final long nsInMicros = 1_000;
         String time;
-        if(nanoseconds / nsToDay >= 1) { // 2 day(s) 5 hour(s) 32 minute(s)
-            long days = nanoseconds / nsToDay;
-            nanoseconds %= nsToDay;
+        if(nanoseconds / nsInDay >= 1) { // 2 day(s) 5 hour(s) 32 minute(s)
+            long days = nanoseconds / nsInDay;
+            nanoseconds %= nsInDay;
             long hours = nanoseconds / nsToHr;
             nanoseconds %= nsToHr;
-            long minutes = nanoseconds / nsToMin;
+            long minutes = nanoseconds / nsInMin;
             time = days + " day(s) " + hours + " hour(s) " + minutes + " minute(s)";
         } else if(nanoseconds / nsToHr >= 1) { // 14 hour(s) 22 minute(s) 8 second(s)
             long hours = nanoseconds / nsToHr;
             nanoseconds %= nsToHr;
-            long minutes = nanoseconds / nsToMin;
-            nanoseconds %= nsToMin;
-            long seconds = nanoseconds / nsToS;
+            long minutes = nanoseconds / nsInMin;
+            nanoseconds %= nsInMin;
+            long seconds = nanoseconds / nsInS;
             time = hours + " hour(s) " + minutes + " minute(s) " + seconds + " second(s)";
-        } else if(nanoseconds / nsToMin >= 1) { // 42 minute(s) 55.3 second(s)
-            long minutes = nanoseconds / nsToMin;
-            nanoseconds %= nsToMin;
-            double seconds = (double) nanoseconds / nsToS;
+        } else if(nanoseconds / nsInMin >= 1) { // 42 minute(s) 55.3 second(s)
+            long minutes = nanoseconds / nsInMin;
+            nanoseconds %= nsInMin;
+            double seconds = (double) nanoseconds / nsInS;
             time = String.format("%d minute(s) %.1f second(s)", minutes, seconds);
-        } else if(nanoseconds / nsToS >= 1) { // 18.8 second(s)
-            double seconds = (double) nanoseconds / nsToS;
+        } else if(nanoseconds / nsInS >= 1) { // 18.8 second(s)
+            double seconds = (double) nanoseconds / nsInS;
             time = String.format("%.1f second(s)", seconds);
-        } else if(nanoseconds / nsToMs >= 1) { // 998.8 millisecond(s)
-            double milliseconds = (double) nanoseconds / nsToMs;
+        } else if(nanoseconds / nsInMs >= 1) { // 998.8 millisecond(s)
+            double milliseconds = (double) nanoseconds / nsInMs;
             time = String.format("%.1f millisecond(s)", milliseconds);
-        } else if(nanoseconds / nsToMicros >= 1) { // 318.8 microsecond(s)
-            double microseconds = (double) nanoseconds / nsToMicros;
+        } else if(nanoseconds / nsInMicros >= 1) { // 318.8 microsecond(s)
+            double microseconds = (double) nanoseconds / nsInMicros;
             time = String.format("%.1f microsecond(s)", microseconds);
         } else { // 7 nanosecond(s)
             time = nanoseconds + " nanosecond(s)";

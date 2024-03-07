@@ -22,13 +22,13 @@ You will revisit this project in furture lab assignments.
 * [x] Commit 6 "Additional tests"
   - Determine test method(s) and implement them for `add()`
   - Determine test method(s) and implement them for `size()`
-* [ ] Commit 7 "Lab completed"
+* [x] Commit 7 "Lab completed"
   - Implement tests and `UnorderedList` implementations of the remaining methods in the `AutoCompleter` interface
   - Add a block comment at the end of the `AutoCompleterTest` class discussing
     the following: "What method did you find most difficult to test? Why?"
   - Finish all assignment requirements and remove the dashes in the line below
 
-D-O-N-E-8
+DONE8
 
 ## [Link to Lab 11 assignment](https://csse.msoe.us/csc1120/lab11)
 

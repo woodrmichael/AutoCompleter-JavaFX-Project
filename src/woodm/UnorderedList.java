@@ -7,6 +7,7 @@
  */
 package woodm;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,16 @@ import java.util.Set;
 public class UnorderedList implements AutoCompleter {
     private final List<String> items;
 
-    public UnorderedList(List<String> list) {
+    /**
+     * Creates a new UnorderedList that removes all duplicates from the original list.
+     * @param list the original list to pass in.
+     *
+     * @throws IllegalArgumentException thrown if the original list is null.
+     */
+    public UnorderedList(List<String> list) throws IllegalArgumentException {
+        if(list == null) {
+            throw new IllegalArgumentException("Please ensure your list is not null");
+        }
         this.items = list;
         Set<String> unique = new HashSet<>(list);
         this.items.clear();
@@ -40,7 +50,7 @@ public class UnorderedList implements AutoCompleter {
 
     @Override
     public boolean exactMatch(String target) {
-        return false;
+        return target != null && !target.isEmpty() && this.items.contains(target);
     }
 
     @Override
@@ -55,6 +65,19 @@ public class UnorderedList implements AutoCompleter {
 
     @Override
     public String[] allMatches(String prefix) {
-        return new String[0];
+        String[] matches = new String[0];
+        if(prefix != null) {
+            if(prefix.isEmpty()) {
+                matches = this.items.toArray(new String[size()]);
+            } else {
+                for(int i = 0; i < size(); i++) {
+                    if(this.items.get(i).startsWith(prefix)) {
+                        matches = Arrays.copyOf(matches, matches.length + 1);
+                        matches[matches.length - 1] = this.items.get(i);
+                    }
+                }
+            }
+        }
+        return matches;
     }
 }
