@@ -10,7 +10,7 @@ You will revisit this project in furture lab assignments.
 * [x] Commit 1 "AutoCompleter Comments"
   - Rename the `woodm` package to match your MSOE woodm
   - Update the comments for the `AutoCompleter` interface
-* [ ] Commit 2 "format() implementation"
+* [x] Commit 2 "format() implementation"
   - Implement the `AutoCompleter.format()` method.
 * [ ] Commit 3 "UnorderedList partial implementation"
   - Stub out the `UnorderedList` class
