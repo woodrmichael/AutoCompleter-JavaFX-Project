@@ -12,7 +12,7 @@ You will revisit this project in furture lab assignments.
   - Update the comments for the `AutoCompleter` interface
 * [x] Commit 2 "format() implementation"
   - Implement the `AutoCompleter.format()` method.
-* [ ] Commit 3 "UnorderedList partial implementation"
+* [x] Commit 3 "UnorderedList partial implementation"
   - Stub out the `UnorderedList` class
   - Implement the constructor and `getBackingClass()` method
 * [ ] Commit 4 "getBackingClass() tests"
