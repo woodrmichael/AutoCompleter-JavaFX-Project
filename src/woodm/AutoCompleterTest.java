@@ -37,6 +37,23 @@ class AutoCompleterTest {
         autoCompleter = new UnorderedList(new LinkedList<>());
         assertEquals("java.util.LinkedList", autoCompleter.getBackingClass());
     }
+
+    @Test
+    void addTest() {
+        assertTrue(autoCompleter.add("Hello"));
+        assertFalse(autoCompleter.add("Hello"));
+        assertThrows(IllegalArgumentException.class, () -> autoCompleter.add(""));
+        assertThrows(IllegalArgumentException.class, () -> autoCompleter.add(null));
+    }
+
+    @Test
+    void sizeTest() {
+        assertEquals(0, autoCompleter.size());
+        autoCompleter.add("Hello");
+        assertEquals(1, autoCompleter.size());
+        autoCompleter.add("Hello");
+        assertEquals(1, autoCompleter.size());
+    }
 }
 
 /*
