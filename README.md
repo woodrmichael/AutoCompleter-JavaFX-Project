@@ -15,7 +15,7 @@ You will revisit this project in furture lab assignments.
 * [x] Commit 3 "UnorderedList partial implementation"
   - Stub out the `UnorderedList` class
   - Implement the constructor and `getBackingClass()` method
-* [ ] Commit 4 "getBackingClass() tests"
+* [x] Commit 4 "getBackingClass() tests"
   - Determine test method(s) and implement them for `getBackingClass()`
 * [ ] Commit 5 "UnorderedList add() and size() implementations"
   - Implement the `add()` and `size()` methods
