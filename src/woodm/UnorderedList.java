@@ -7,7 +7,6 @@
  */
 package woodm;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +26,16 @@ public class UnorderedList implements AutoCompleter {
 
     @Override
     public boolean add(String word) throws IllegalArgumentException {
-        return false;
+        if(word == null || word.isEmpty()) {
+            throw new IllegalArgumentException("Please ensure the word you want to add" +
+                    " isn't empty or null");
+        }
+        boolean changed = false;
+        if(!this.items.contains(word)) {
+            this.items.add(word);
+            changed = true;
+        }
+        return changed;
     }
 
     @Override
@@ -37,7 +45,7 @@ public class UnorderedList implements AutoCompleter {
 
     @Override
     public int size() {
-        return 0;
+        return items.size();
     }
 
     @Override

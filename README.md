@@ -17,7 +17,7 @@ You will revisit this project in furture lab assignments.
   - Implement the constructor and `getBackingClass()` method
 * [x] Commit 4 "getBackingClass() tests"
   - Determine test method(s) and implement them for `getBackingClass()`
-* [ ] Commit 5 "UnorderedList add() and size() implementations"
+* [x] Commit 5 "UnorderedList add() and size() implementations"
   - Implement the `add()` and `size()` methods
 * [ ] Commit 6 "Additional tests"
   - Determine test method(s) and implement them for `add()`

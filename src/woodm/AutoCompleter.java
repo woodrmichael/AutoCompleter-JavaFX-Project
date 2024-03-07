@@ -13,7 +13,7 @@ package woodm;
 public interface AutoCompleter {
     /**
      * Adds a word to the AutoCompleter if the word is valid.
-     * Duplicates aren't allowed to be added.
+     * Duplicates and null values aren't allowed to be added.
      * @param word a string that is to be added to the AutoCompleter.
      * @return true if word is added to the object,
      * false if the word is already in the AutoCompleter.
