@@ -1,0 +1,391 @@
+<meta charset="utf-8" lang="en">            <style class="fallback">body{visibility:hidden;}</style>
+<!---
+
+
+                       DOWNLOAD AND OPEN IN A BROWSER
+                          TO SEE PROPER FORMATTING
+
+
+--->
+**Lab 8: JUnit Testing**
+    Username: woodm
+    Date: 04-15-2024
+    Course: CSC1120
+    Submitted to: Dr. Chris Taylor
+
+!!! METRIcS: Instructor Feedback
+    | Earned | Possible | Criteria                                         |
+    | ------ | -------- | ------------------------------------------------ |
+    |   55   |    55    | Technical quality                                |
+    |   10   |    10    | `AutoCompleter` JavaDoc                          |
+    |    5   |     5    | `AutoCompleter.format()` tests                   |
+    |   15   |    15    | Intermediate commits                             |
+    |   10   |    10    | Coding standard compliance and program clarity   |
+    |    5   |     5    | Following submission instructions                |
+
+    [Nicely Done](https://msoe.us/taylor/Nice)
+
+# AutoCompleter.java
+
+~~~~ Java
+/*
+ * Course: CSC1120A 121
+ * Spring 2023
+ * Lab 8 - JUnit testing
+ * Name: Michael Wood
+ * Created: 3/5/2024
+ */
+package woodm;
+
+/**
+~~~~ Java highlight
+ * This is the AutoCompleter interface used to implement test classes.
+~~~~
+!!! MINUS: -1 Should describe the purpose of the interface
+    What does the interface represent? How do you envision it could be
+    used?
+
+~~~~ Java
+ */
+public interface AutoCompleter {
+    /**
+     * Adds a word to the AutoCompleter if the word is valid.
+     * Duplicates and null values aren't allowed to be added.
+     * @param word a string that is to be added to the AutoCompleter.
+     * @return true if word is added to the object,
+     * false if the word is already in the AutoCompleter.
+     *
+     * @throws IllegalArgumentException thrown if word is null or an empty string.
+     */
+    boolean add(String word) throws IllegalArgumentException;
+
+    /**
+     * Searches for a target in the AutoCompleter and returns true if it was found, false if not.
+     * @param target the target to search for.
+     * @return true if target is found in the AutoCompleter,
+     * false if target is null or an empty string, or it was not found.
+     */
+    boolean exactMatch(String target);
+
+    /**
+     * Returns an integer representing the number of items in the AutoCompleter.
+     * @return the number of items in the AutoCompleter.
+     */
+    int size();
+
+    /**
+     * returns a String indicating the fully qualified name of the data structure used to store
+     * the words for the AutoCompleter.
+     * @return a String indicating the name of the data structure used to store the words.
+     */
+    String getBackingClass();
+
+    /**
+     * Returns an array of all the strings in the object that begin with the prefix.
+     * If prefix is an empty string, an array of all the strings in the auto completer are returned.
+     * If prefix is null, an empty array is returned.
+     * @param prefix the prefix to compare the words in the AutoCompleter to.
+     * @return an array of all the strings in the object that begin with the prefix.
+     */
+    String[] allMatches(String prefix);
+
+    /**
+     * Returns a human-friendly string representing the number of nanoseconds.
+     * @param nanoseconds the amount of nanoseconds it takes to complete the operation.
+     * @return a human-friendly string representing the number of nanoseconds.
+     */
+    static String format(long nanoseconds) {
+        final long nsInDay = 86_400_000_000_000L;
+        final long nsToHr = 3_600_000_000_000L;
+        final long nsInMin = 60_000_000_000L;
+        final long nsInS = 1_000_000_000;
+        final long nsInMs = 1_000_000;
+        final long nsInMicros = 1_000;
+        String time;
+        if(nanoseconds / nsInDay >= 1) { // 2 day(s) 5 hour(s) 32 minute(s)
+            long days = nanoseconds / nsInDay;
+            nanoseconds %= nsInDay;
+            long hours = nanoseconds / nsToHr;
+            nanoseconds %= nsToHr;
+            long minutes = nanoseconds / nsInMin;
+            time = days + " day(s) " + hours + " hour(s) " + minutes + " minute(s)";
+        } else if(nanoseconds / nsToHr >= 1) { // 14 hour(s) 22 minute(s) 8 second(s)
+            long hours = nanoseconds / nsToHr;
+            nanoseconds %= nsToHr;
+            long minutes = nanoseconds / nsInMin;
+            nanoseconds %= nsInMin;
+            long seconds = nanoseconds / nsInS;
+            time = hours + " hour(s) " + minutes + " minute(s) " + seconds + " second(s)";
+        } else if(nanoseconds / nsInMin >= 1) { // 42 minute(s) 55.3 second(s)
+            long minutes = nanoseconds / nsInMin;
+            nanoseconds %= nsInMin;
+            double seconds = (double) nanoseconds / nsInS;
+            time = String.format("%d minute(s) %.1f second(s)", minutes, seconds);
+        } else if(nanoseconds / nsInS >= 1) { // 18.8 second(s)
+            double seconds = (double) nanoseconds / nsInS;
+            time = String.format("%.1f second(s)", seconds);
+        } else if(nanoseconds / nsInMs >= 1) { // 998.8 millisecond(s)
+            double milliseconds = (double) nanoseconds / nsInMs;
+            time = String.format("%.1f millisecond(s)", milliseconds);
+        } else if(nanoseconds / nsInMicros >= 1) { // 318.8 microsecond(s)
+            double microseconds = (double) nanoseconds / nsInMicros;
+            time = String.format("%.1f microsecond(s)", microseconds);
+        } else { // 7 nanosecond(s)
+            time = nanoseconds + " nanosecond(s)";
+        }
+        return time;
+    }
+}
+
+~~~~
+
+# AutoCompleterTest.java
+
+~~~~ Java
+/*
+ * Course: CSC1120A 121
+ * Spring 2023
+ * Lab 8 - JUnit testing
+ * Name: Michael Wood
+ * Created: 3/7/2024
+ */
+package woodm;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Tests to ensure all implementations of the AutoCompleter interface work properly.
+ */
+class AutoCompleterTest {
+    private AutoCompleter autoCompleter;
+
+    @BeforeEach
+    void setUp() {
+        autoCompleter = new UnorderedList(new ArrayList&lt&#xFEFF;>());
+    }
+
+    @AfterEach
+    void tearDown() {
+        autoCompleter = null;
+    }
+
+    @Test
+    void getBackingClassTest() {
+        assertEquals("java.util.ArrayList", autoCompleter.getBackingClass());
+        autoCompleter = new UnorderedList(new LinkedList&lt&#xFEFF;>());
+        assertEquals("java.util.LinkedList", autoCompleter.getBackingClass());
+    }
+
+    @Test
+    void addTest() {
+        assertTrue(autoCompleter.add("Hello"));
+        assertFalse(autoCompleter.add("Hello"));
+        assertThrows(IllegalArgumentException.class, () -> autoCompleter.add(""));
+        assertThrows(IllegalArgumentException.class, () -> autoCompleter.add(null));
+    }
+
+    @Test
+    void sizeTest() {
+        assertEquals(0, autoCompleter.size());
+        autoCompleter.add("Hello");
+        assertEquals(1, autoCompleter.size());
+        autoCompleter.add("Hello");
+        assertEquals(1, autoCompleter.size());
+    }
+
+    @Test
+    void exactMatchTest() {
+        autoCompleter.add("Hello");
+        assertTrue(autoCompleter.exactMatch("Hello"));
+        assertFalse(autoCompleter.exactMatch("hello"));
+        assertFalse(autoCompleter.exactMatch(null));
+        assertFalse(autoCompleter.exactMatch(""));
+    }
+
+    @Test
+    void allMatchesTest() {
+        autoCompleter.add("hello");
+        autoCompleter.add("hello world");
+        autoCompleter.add("Hello");
+        autoCompleter.add("hi");
+        autoCompleter.add("help!");
+        String[] helMatches = {"hello", "hello world", "help!"};
+        String[] hMatches = {"hello", "hello world", "hi", "help!"};
+        String[] matches = {"hello", "hello world", "Hello", "hi", "help!"};
+        assertArrayEquals(helMatches, autoCompleter.allMatches("hel"));
+        assertArrayEquals(hMatches, autoCompleter.allMatches("h"));
+        assertArrayEquals(new String[0], autoCompleter.allMatches(null));
+        assertArrayEquals(new String[0], autoCompleter.allMatches("HI"));
+        assertArrayEquals(matches, autoCompleter.allMatches(""));
+    }
+
+    @Test
+    void formatTest() {
+        final long nsInDay = 86_400_000_000_000L;
+        final long nsInHr = 3_600_000_000_000L;
+        final long nsInMin = 60_000_000_000L;
+        final long nsInS = 1_000_000_000;
+        final long nsInMs = 1_000_000;
+        final long nsInMicros = 1_000;
+        long nanoseconds = nsInDay + nsInHr + nsInMin;
+        assertEquals("1 day(s) 1 hour(s) 1 minute(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = nsInHr + nsInMin + nsInS;
+        assertEquals("1 hour(s) 1 minute(s) 1 second(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = nsInMin + nsInS;
+        assertEquals("1 minute(s) 1.0 second(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = nsInS;
+        assertEquals("1.0 second(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = nsInMs;
+        assertEquals("1.0 millisecond(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = nsInMicros;
+        assertEquals("1.0 microsecond(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = 1;
+        assertEquals("1 nanosecond(s)", AutoCompleter.format(nanoseconds));
+    }
+}
+
+
+/*
+  Discussion: What method did you find most difficult to test? Why?
+
+  I thought the allMatches() method was the most difficult to test because
+  I was originally comparing the results of the method to another String array that has the
+  same contents as what was expected. This resulted in the test failing when I used
+  assertEquals because they aren't the same object. I then decided to use Arrays.equals inside
+  the assertEquals and this worked. Then, I found out that the assertArrayEquals is the
+  simplified version of this and that is what I ended up using.
+
+*/
+
+~~~~
+
+
+# UnorderedList.java
+
+~~~~ Java
+/*
+ * Course: CSC1120A 121
+ * Spring 2023
+ * Lab 8 - JUnit testing
+ * Name: Michael Wood
+ * Created: 3/7/2024
+ */
+package woodm;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * An UnorderedList is a list that has no order and doesn't allow duplicates.
+ */
+public class UnorderedList implements AutoCompleter {
+    private final List&lt&#xFEFF;String> items;
+
+    /**
+     * Creates a new UnorderedList that removes all duplicates from the original list.
+     * @param list the original list to pass in.
+     *
+     * @throws IllegalArgumentException thrown if the original list is null.
+     */
+    public UnorderedList(List&lt&#xFEFF;String> list) throws IllegalArgumentException {
+        if(list == null) {
+            throw new IllegalArgumentException("Please ensure your list is not null");
+        }
+        this.items = list;
+        Set&lt&#xFEFF;String> unique = new HashSet&lt&#xFEFF;>(list);
+        this.items.clear();
+        this.items.addAll(unique);
+    }
+
+    @Override
+    public boolean add(String word) throws IllegalArgumentException {
+        if(word == null || word.isEmpty()) {
+            throw new IllegalArgumentException("Please ensure the word you want to add" +
+                    " isn't empty or null");
+        }
+        boolean changed = false;
+        if(!this.items.contains(word)) {
+            this.items.add(word);
+            changed = true;
+        }
+        return changed;
+    }
+
+    @Override
+    public boolean exactMatch(String target) {
+        return target != null && !target.isEmpty() && this.items.contains(target);
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public String getBackingClass() {
+        return this.items.getClass().getName();
+    }
+
+    @Override
+    public String[] allMatches(String prefix) {
+        String[] matches = new String[0];
+        if(prefix != null) {
+            if(prefix.isEmpty()) {
+                matches = this.items.toArray(new String[size()]);
+            } else {
+                for(int i = 0; i &lt&#xFEFF; size(); i++) {
+                    if(this.items.get(i).startsWith(prefix)) {
+                        matches = Arrays.copyOf(matches, matches.length + 1);
+                        matches[matches.length - 1] = this.items.get(i);
+                    }
+                }
+            }
+        }
+        return matches;
+    }
+}
+
+~~~~
+
+# Additional Instructor Tests
+
+## Instructor Tests for `AutoCompleter.format()`
+- &#x02714; 192,720,000,000,000ns formatted correctly: `2 day(s) 5 hour(s) 32 minute(s)`
+- &#x02714; 51,728,000,000,000ns formatted correctly: `14 hour(s) 22 minute(s) 8 second(s)`
+- &#x02714; 2,575,300,000,000ns formatted correctly: `42 minute(s) 55.3 second(s)`
+- &#x02714; 18,800,000,000ns formatted correctly: `18.8 second(s)`
+- &#x02714; 998,800,000ns formatted correctly: `998.8 millisecond(s)`
+- &#x02714; 318,800ns formatted correctly: `318.8 microsecond(s)`
+- &#x02714; 7ns formatted correctly: `7 nanosecond(s)`
+- &#x02714; 998,799,980ns formatted correctly: `998.8 millisecond(s)`
+- &#x0274C; 51,727,999,999,980ns formatted incorrectly:
+  ~~~~
+  Actual: 14 hour(s) 22 minute(s) 7 second(s)
+Expected: 14 hour(s) 22 minute(s) 8 second(s)
+  ~~~~
+
+!!! MINUS: One test of `format()` failed
+    It doesn't look like you are rounding correctly on the last test.
+
+# Commit Log
+
+~~~~
+Wed Mar 6 15:25 "AutoCompleter-Comments" # woodm@msoe.edu
+Thu Mar 7 08:40 "format-implementation" # woodm@msoe.edu
+Thu Mar 7 08:53 "UnorderedList-partial-implementation" # woodm@msoe.edu
+Thu Mar 7 09:08 "getBackingClass-tests" # woodm@msoe.edu
+Thu Mar 7 09:14 "UnorderedList-add-and-size-implementations" # woodm@msoe.edu
+Thu Mar 7 09:19 "Additional-tests" # woodm@msoe.edu
+Thu Mar 7 17:03 "Lab-Completed" # woodm@msoe.edu
+~~~~
+
+<!-- Markdeep: --><script src="https://csse.msoe.us/markdeep.js?graded"></script>
