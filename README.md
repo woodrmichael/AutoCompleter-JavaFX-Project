@@ -32,7 +32,7 @@ DONE8
 
 ## [Link to Lab 11 assignment](https://csse.msoe.us/csc1120/lab11)
 
-* [ ] Commit 1 "Ordered List stubs"
+* [x] Commit 1 "Ordered List stubs"
     - Incorporate feedback from your instructor
     - Create the `OrderedList` class and stub out the methods.
 * [ ] Commit 2 "GUI Skeleton"

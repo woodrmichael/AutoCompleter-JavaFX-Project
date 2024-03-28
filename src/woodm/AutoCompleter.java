@@ -8,7 +8,9 @@
 package woodm;
 
 /**
- * This is the AutoCompleter interface used to implement test classes.
+ * The AutoCompleter interface represents an interface for implementing an auto-completion system
+ * in your program. This interface defines methods and functionality related to providing
+ * suggestions or completions based on user input.
  */
 public interface AutoCompleter {
     /**
@@ -70,14 +72,14 @@ public interface AutoCompleter {
             nanoseconds %= nsInDay;
             long hours = nanoseconds / nsToHr;
             nanoseconds %= nsToHr;
-            long minutes = nanoseconds / nsInMin;
+            long minutes = Math.round((double) nanoseconds / nsInMin);
             time = days + " day(s) " + hours + " hour(s) " + minutes + " minute(s)";
         } else if(nanoseconds / nsToHr >= 1) { // 14 hour(s) 22 minute(s) 8 second(s)
             long hours = nanoseconds / nsToHr;
             nanoseconds %= nsToHr;
             long minutes = nanoseconds / nsInMin;
             nanoseconds %= nsInMin;
-            long seconds = nanoseconds / nsInS;
+            long seconds = Math.round((double) nanoseconds / nsInS);
             time = hours + " hour(s) " + minutes + " minute(s) " + seconds + " second(s)";
         } else if(nanoseconds / nsInMin >= 1) { // 42 minute(s) 55.3 second(s)
             long minutes = nanoseconds / nsInMin;

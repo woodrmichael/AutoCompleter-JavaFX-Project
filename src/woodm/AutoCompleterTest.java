@@ -84,26 +84,33 @@ class AutoCompleterTest {
 
     @Test
     void formatTest() {
-        final long nsInDay = 86_400_000_000_000L;
-        final long nsInHr = 3_600_000_000_000L;
-        final long nsInMin = 60_000_000_000L;
-        final long nsInS = 1_000_000_000;
-        final long nsInMs = 1_000_000;
-        final long nsInMicros = 1_000;
-        long nanoseconds = nsInDay + nsInHr + nsInMin;
-        assertEquals("1 day(s) 1 hour(s) 1 minute(s)", AutoCompleter.format(nanoseconds));
-        nanoseconds = nsInHr + nsInMin + nsInS;
-        assertEquals("1 hour(s) 1 minute(s) 1 second(s)", AutoCompleter.format(nanoseconds));
-        nanoseconds = nsInMin + nsInS;
-        assertEquals("1 minute(s) 1.0 second(s)", AutoCompleter.format(nanoseconds));
-        nanoseconds = nsInS;
-        assertEquals("1.0 second(s)", AutoCompleter.format(nanoseconds));
-        nanoseconds = nsInMs;
-        assertEquals("1.0 millisecond(s)", AutoCompleter.format(nanoseconds));
-        nanoseconds = nsInMicros;
-        assertEquals("1.0 microsecond(s)", AutoCompleter.format(nanoseconds));
-        nanoseconds = 1;
-        assertEquals("1 nanosecond(s)", AutoCompleter.format(nanoseconds));
+        final long test1 = 192_720_000_000_000L;
+        final long test2 = 51_728_000_000_000L;
+        final long test3 = 2_575_300_000_000L;
+        final long test4 = 18_800_000_000L;
+        final long test5 = 998_800_000;
+        final long test6 = 318_800;
+        final long test7 = 7;
+        final long test8 = 998_799_980;
+        final long test9 = 51_727_999_999_980L;
+        long nanoseconds = test1;
+        assertEquals("2 day(s) 5 hour(s) 32 minute(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test2;
+        assertEquals("14 hour(s) 22 minute(s) 8 second(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test3;
+        assertEquals("42 minute(s) 55.3 second(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test4;
+        assertEquals("18.8 second(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test5;
+        assertEquals("998.8 millisecond(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test6;
+        assertEquals("318.8 microsecond(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test7;
+        assertEquals("7 nanosecond(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test8;
+        assertEquals("998.8 millisecond(s)", AutoCompleter.format(nanoseconds));
+        nanoseconds = test9;
+        assertEquals("14 hour(s) 22 minute(s) 8 second(s)", AutoCompleter.format(nanoseconds));
     }
 }
 
