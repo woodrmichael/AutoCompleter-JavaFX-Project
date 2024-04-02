@@ -19,7 +19,7 @@
          <children>
             <VBox prefHeight="248.0" prefWidth="150.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="160.0" text="Unosrted List" />
+                  <Label prefHeight="20.0" prefWidth="160.0" text="Unsorted List" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="All Matches Time" />
                   <Label prefHeight="20.0" prefWidth="160.0" text="Sorted List" />
