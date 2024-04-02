@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="woodm.Controller">
+   <children>
+      <HBox prefHeight="30.0" prefWidth="300.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="50.0" text="Search" />
+            <TextField fx:id="searchBar" prefHeight="30.0" prefWidth="350.0" />
+         </children>
+      </HBox>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="300.0" prefWidth="400.0" vbarPolicy="ALWAYS" />
+      <HBox prefHeight="270.0" prefWidth="400.0">
+         <children>
+            <VBox prefHeight="248.0" prefWidth="150.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="160.0" text="Unosrted List" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="All Matches Time" />
+                  <Label prefHeight="20.0" prefWidth="160.0" text="Sorted List" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="All Matches Time" />
+                  <Label prefHeight="20.0" prefWidth="160.0" text="Binary Search Tree" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="All Matches Time" />
+               </children>
+            </VBox>
+            <VBox prefHeight="248.0" prefWidth="250.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="250.0" />
+                  <TextField fx:id="uLExactTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <TextField fx:id="uLAllMatchesTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <Label prefHeight="20.0" prefWidth="250.0" />
+                  <TextField fx:id="sLExactTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <TextField fx:id="sLAllMatchesTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <Label prefHeight="20.0" prefWidth="250.0" />
+                  <TextField fx:id="bSTExactTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <TextField fx:id="bSTAllMatchesTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

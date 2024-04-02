@@ -35,7 +35,7 @@ DONE8
 * [x] Commit 1 "Ordered List stubs"
     - Incorporate feedback from your instructor
     - Create the `OrderedList` class and stub out the methods.
-* [ ] Commit 2 "GUI Skeleton"
+* [x] Commit 2 "GUI Skeleton"
     - Create the `FXML` file matching the UI in Figure 1 of the lab assignment
     - Create the `AutoComplete` class that serves as the main entry point for the program
     - Stub out the `Controller` class so that you can display the (non-functional) UI

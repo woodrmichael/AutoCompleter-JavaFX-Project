@@ -27,6 +27,9 @@ public class OrderedList implements AutoCompleter {
             throw new IllegalArgumentException("Please ensure your list is not null");
         }
         // NEED TO UPDATE - MUST ENSURE NO DUPLICATES AND ITEMS IS IN ORDER.
+        /*
+        use list - for loop use compareTo to find where you should add the element in the list.
+         */
         items = list;
     }
     @Override
