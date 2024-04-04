@@ -7,7 +7,7 @@
  */
 package woodm;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * An OrderedList is a list that has an order and doesn't allow duplicates.
@@ -26,34 +26,84 @@ public class OrderedList implements AutoCompleter {
         if(list == null) {
             throw new IllegalArgumentException("Please ensure your list is not null");
         }
-        // NEED TO UPDATE - MUST ENSURE NO DUPLICATES AND ITEMS IS IN ORDER.
-        /*
-        use list - for loop use compareTo to find where you should add the element in the list.
-         */
-        items = list;
+        this.items = list;
+        Set<String> unique = new HashSet<>(list);
+        this.items.clear();
+        this.items.addAll(unique);
+        Collections.sort(items);
     }
     @Override
     public boolean add(String word) throws IllegalArgumentException {
-        return false;
+        if(word == null || word.isEmpty()) {
+            throw new IllegalArgumentException("Please ensure the word you want to add" +
+                    " isn't empty or null");
+        }
+        boolean changed = false;
+        ListIterator<String> iterator = this.items.listIterator();
+        if(!items.contains(word)) {
+            if (!iterator.hasNext() && !iterator.hasPrevious()) {
+                iterator.add(word);
+                changed = true;
+            } else if (iterator.hasNext() && iterator.next().compareTo(word) < 0) {
+                iterator.previous();
+                while (iterator.hasNext() && !changed) {
+                    String currentWord = iterator.next();
+                    if (currentWord.compareTo(word) > 0) {
+                        iterator.previous();
+                        iterator.add(word);
+                        changed = true;
+                    }
+                }
+                if(!changed) {
+                    iterator.add(word);
+                    changed = true;
+                }
+            } else {
+                if(iterator.hasPrevious()) {
+                    iterator.previous();
+                }
+                iterator.add(word);
+                changed = true;
+            }
+        }
+        return changed;
     }
 
     @Override
     public boolean exactMatch(String target) {
-        return false;
+        return target != null && !target.isEmpty()
+                && Collections.binarySearch(this.items, target) >= 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.items.size();
     }
 
     @Override
     public String getBackingClass() {
-        return null;
+        return this.items.getClass().getName();
     }
 
     @Override
     public String[] allMatches(String prefix) {
-        return new String[0];
+        String[] matches = new String[0];
+        if(prefix != null) {
+            if(prefix.isEmpty()) {
+                matches = this.items.toArray(new String[size()]);
+            } else {
+                int index = Collections.binarySearch(this.items, prefix);
+                if(index < 0) {
+                    index = -index - 1;
+                }
+                List<String> matchesList = new ArrayList<>();
+                while(index < items.size() && items.get(index).startsWith(prefix)) {
+                    matchesList.add(items.get(index));
+                    index++;
+                }
+                matches = matchesList.toArray(new String[0]);
+            }
+        }
+        return matches;
     }
 }

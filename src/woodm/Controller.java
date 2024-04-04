@@ -8,6 +8,7 @@
 package woodm;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 
@@ -18,6 +19,8 @@ import javafx.scene.control.TextField;
 public class Controller {
     @FXML
     private TextField searchBar;
+    @FXML
+    private ListView<String> listView;
     @FXML
     private TextField uLExactTime;
     @FXML

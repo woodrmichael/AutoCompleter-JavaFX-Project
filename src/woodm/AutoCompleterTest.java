@@ -12,7 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +26,7 @@ class AutoCompleterTest {
 
     @BeforeEach
     void setUp() {
-        autoCompleter = new UnorderedList(new ArrayList<>());
+        autoCompleter = new OrderedList(new ArrayList<>());
     }
 
     @AfterEach
@@ -72,14 +74,21 @@ class AutoCompleterTest {
         autoCompleter.add("Hello");
         autoCompleter.add("hi");
         autoCompleter.add("help!");
+        autoCompleter.add("h");
         String[] helMatches = {"hello", "hello world", "help!"};
-        String[] hMatches = {"hello", "hello world", "hi", "help!"};
-        String[] matches = {"hello", "hello world", "Hello", "hi", "help!"};
+        String[] hMatches = {"hello", "hello world", "hi", "help!", "h"};
+        String[] matches = {"hello", "hello world", "Hello", "hi", "help!", "h"};
+        if(autoCompleter instanceof OrderedList) {
+            Arrays.sort(helMatches);
+            Arrays.sort(hMatches);
+            Arrays.sort(matches);
+        }
         assertArrayEquals(helMatches, autoCompleter.allMatches("hel"));
         assertArrayEquals(hMatches, autoCompleter.allMatches("h"));
         assertArrayEquals(new String[0], autoCompleter.allMatches(null));
         assertArrayEquals(new String[0], autoCompleter.allMatches("HI"));
         assertArrayEquals(matches, autoCompleter.allMatches(""));
+
     }
 
     @Test

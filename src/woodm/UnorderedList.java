@@ -55,7 +55,7 @@ public class UnorderedList implements AutoCompleter {
 
     @Override
     public int size() {
-        return items.size();
+        return this.items.size();
     }
 
     @Override

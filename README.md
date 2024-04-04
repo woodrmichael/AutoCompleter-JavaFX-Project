@@ -39,7 +39,7 @@ DONE8
     - Create the `FXML` file matching the UI in Figure 1 of the lab assignment
     - Create the `AutoComplete` class that serves as the main entry point for the program
     - Stub out the `Controller` class so that you can display the (non-functional) UI
-* [ ] Commit 3 "Ordered List Functionality"
+* [x] Commit 3 "Ordered List Functionality"
     - Add functionality for the ordered list implementation.
 * [ ] Commit 4 "Binary Search Tree Functionality"
     - Add functionality for the sorted list implementation.
