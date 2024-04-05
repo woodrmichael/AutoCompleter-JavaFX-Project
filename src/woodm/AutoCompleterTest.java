@@ -11,10 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,7 +23,7 @@ class AutoCompleterTest {
 
     @BeforeEach
     void setUp() {
-        autoCompleter = new OrderedList(new ArrayList<>());
+        autoCompleter = new BinarySearchTree(new TreeSet<>());
     }
 
     @AfterEach
@@ -36,9 +33,12 @@ class AutoCompleterTest {
 
     @Test
     void getBackingClassTest() {
+        autoCompleter = new UnorderedList(new ArrayList<>());
         assertEquals("java.util.ArrayList", autoCompleter.getBackingClass());
-        autoCompleter = new UnorderedList(new LinkedList<>());
+        autoCompleter = new OrderedList(new LinkedList<>());
         assertEquals("java.util.LinkedList", autoCompleter.getBackingClass());
+        autoCompleter = new BinarySearchTree(new TreeSet<>());
+        assertEquals("java.util.TreeSet", autoCompleter.getBackingClass());
     }
 
     @Test
@@ -78,7 +78,7 @@ class AutoCompleterTest {
         String[] helMatches = {"hello", "hello world", "help!"};
         String[] hMatches = {"hello", "hello world", "hi", "help!", "h"};
         String[] matches = {"hello", "hello world", "Hello", "hi", "help!", "h"};
-        if(autoCompleter instanceof OrderedList) {
+        if(autoCompleter instanceof OrderedList || autoCompleter instanceof BinarySearchTree) {
             Arrays.sort(helMatches);
             Arrays.sort(hMatches);
             Arrays.sort(matches);
@@ -88,7 +88,6 @@ class AutoCompleterTest {
         assertArrayEquals(new String[0], autoCompleter.allMatches(null));
         assertArrayEquals(new String[0], autoCompleter.allMatches("HI"));
         assertArrayEquals(matches, autoCompleter.allMatches(""));
-
     }
 
     @Test

@@ -41,7 +41,7 @@ DONE8
     - Stub out the `Controller` class so that you can display the (non-functional) UI
 * [x] Commit 3 "Ordered List Functionality"
     - Add functionality for the ordered list implementation.
-* [ ] Commit 4 "Binary Search Tree Functionality"
+* [x] Commit 4 "Binary Search Tree Functionality"
     - Add functionality for the sorted list implementation.
 * [ ] Commit 5 "Lab completed"
     - Implement the remaining requirements for the lab assignment.
