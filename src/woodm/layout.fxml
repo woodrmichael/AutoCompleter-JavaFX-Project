@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,8 +12,9 @@
    <children>
       <HBox prefHeight="30.0" prefWidth="300.0">
          <children>
+            <Button fx:id="selectFileButton" mnemonicParsing="false" onAction="#selectFile" prefHeight="50.0" text="Select File" />
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="50.0" text="Search" />
-            <TextField fx:id="searchBar" prefHeight="30.0" prefWidth="350.0" />
+            <TextField fx:id="searchBar" editable="false" onKeyTyped="#updateList" prefHeight="30.0" prefWidth="280.0" />
          </children>
       </HBox>
       <ScrollPane hbarPolicy="NEVER" prefHeight="300.0" prefWidth="400.0" vbarPolicy="ALWAYS">
@@ -23,10 +25,22 @@
          <children>
             <VBox prefHeight="248.0" prefWidth="150.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="160.0" text="Unsorted List" />
+                  <HBox prefHeight="20.0" prefWidth="160.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="75.0" text="Unsorted List" />
+                        <Button fx:id="unsortedListALButton" disable="true" mnemonicParsing="false" onAction="#createBackingList" prefHeight="20.0" prefWidth="35.0" text="AL" />
+                        <Button fx:id="unsortedListLLButton" disable="true" mnemonicParsing="false" onAction="#createBackingList" prefHeight="20.0" prefWidth="35.0" text="LL" />
+                     </children>
+                  </HBox>
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="All Matches Time" />
-                  <Label prefHeight="20.0" prefWidth="160.0" text="Sorted List" />
+                  <HBox prefHeight="20.0" prefWidth="160.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="75.0" text="Sorted List" />
+                        <Button fx:id="sortedListALButton" disable="true" mnemonicParsing="false" onAction="#createBackingList" prefHeight="20.0" prefWidth="35.0" text="AL" />
+                        <Button fx:id="sortedListLLButton" disable="true" mnemonicParsing="false" onAction="#createBackingList" prefHeight="20.0" prefWidth="35.0" text="LL" />
+                     </children>
+                  </HBox>
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="All Matches Time" />
                   <Label prefHeight="20.0" prefWidth="160.0" text="Binary Search Tree" />

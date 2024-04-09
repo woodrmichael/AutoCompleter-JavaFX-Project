@@ -23,7 +23,7 @@ class AutoCompleterTest {
 
     @BeforeEach
     void setUp() {
-        autoCompleter = new BinarySearchTree(new TreeSet<>());
+        autoCompleter = new OrderedList(new ArrayList<>());
     }
 
     @AfterEach
@@ -37,7 +37,7 @@ class AutoCompleterTest {
         assertEquals("java.util.ArrayList", autoCompleter.getBackingClass());
         autoCompleter = new OrderedList(new LinkedList<>());
         assertEquals("java.util.LinkedList", autoCompleter.getBackingClass());
-        autoCompleter = new BinarySearchTree(new TreeSet<>());
+        autoCompleter = new BinarySearchTree(new ArrayList<>());
         assertEquals("java.util.TreeSet", autoCompleter.getBackingClass());
     }
 

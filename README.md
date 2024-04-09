@@ -43,10 +43,10 @@ DONE8
     - Add functionality for the ordered list implementation.
 * [x] Commit 4 "Binary Search Tree Functionality"
     - Add functionality for the sorted list implementation.
-* [ ] Commit 5 "Lab completed"
+* [x] Commit 5 "Lab completed"
     - Implement the remaining requirements for the lab assignment.
 
-D-O-N-E-11
+DONE11
 
 ## [Link to Lab 13 assignment](https://csse.msoe.us/csc1120/lab13)
 

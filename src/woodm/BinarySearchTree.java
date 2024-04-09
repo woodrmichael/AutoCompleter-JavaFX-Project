@@ -7,6 +7,7 @@
  */
 package woodm;
 
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -20,15 +21,15 @@ public class BinarySearchTree implements AutoCompleter {
     /**
      * Creates a new BinarySearchTree and adds all nodes from the treeSet
      * into the backing tree.
-     * @param treeSet the original tree set to pass in.
+     * @param list the original tree set to pass in.
      *
      * @throws IllegalArgumentException thrown if the original tree set is null.
      */
-    public BinarySearchTree(TreeSet<String> treeSet) throws IllegalArgumentException {
-        if(treeSet == null) {
+    public BinarySearchTree(List<String> list) throws IllegalArgumentException {
+        if(list == null) {
             throw new IllegalArgumentException("Please ensure your list is not null");
         }
-        this.items = treeSet;
+        this.items = new TreeSet<>(list);
     }
 
     @Override
@@ -62,7 +63,8 @@ public class BinarySearchTree implements AutoCompleter {
             if(prefix.isEmpty()) {
                 matches = this.items.toArray(new String[size()]);
             } else {
-                SortedSet<String> matchSet = this.items.subSet(prefix, prefix + Character.MAX_VALUE);
+                SortedSet<String> matchSet =
+                        this.items.subSet(prefix, prefix + Character.MAX_VALUE);
                 matches = matchSet.toArray(new String[0]);
             }
         }

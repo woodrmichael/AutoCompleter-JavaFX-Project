@@ -7,7 +7,12 @@
  */
 package woodm;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 
 /**
  * An OrderedList is a list that has an order and doesn't allow duplicates.
