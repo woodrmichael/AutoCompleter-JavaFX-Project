@@ -117,16 +117,12 @@ public class Controller {
                 unorderedList = new UnorderedList(unorderedListBackingList);
                 unsortedListLLButton.setBackground(greenBackground);
                 unsortedListALButton.setBackground(null);
-                System.out.println(orderedList.getBackingClass());
-                System.out.println(unorderedList.getBackingClass());
             } else if(listType.equals("Sorted List")
                     && !(orderedListBackingList instanceof LinkedList<String>)) {
                 orderedListBackingList = new LinkedList<>(orderedListBackingList);
                 orderedList = new OrderedList(orderedListBackingList);
                 sortedListLLButton.setBackground(greenBackground);
                 sortedListALButton.setBackground(null);
-                System.out.println(orderedList.getBackingClass());
-                System.out.println(unorderedList.getBackingClass());
             }
         } else {
             if(listType.equals("Unsorted List")
@@ -135,19 +131,14 @@ public class Controller {
                 unorderedList = new UnorderedList(unorderedListBackingList);
                 unsortedListALButton.setBackground(greenBackground);
                 unsortedListLLButton.setBackground(null);
-                System.out.println(orderedList.getBackingClass());
-                System.out.println(unorderedList.getBackingClass());
             } else if(listType.equals("Sorted List")
                     && !(orderedListBackingList instanceof ArrayList<String>)) {
                 orderedListBackingList = new ArrayList<>(orderedListBackingList);
                 orderedList = new OrderedList(orderedListBackingList);
                 sortedListALButton.setBackground(greenBackground);
                 sortedListLLButton.setBackground(null);
-                System.out.println(orderedList.getBackingClass());
-                System.out.println(unorderedList.getBackingClass());
             }
         }
-
     }
 
     private void processFile() {
