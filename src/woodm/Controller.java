@@ -113,52 +113,53 @@ public class Controller {
         if(button.getText().equals("LL")) {
             if(listType.equals("Unsorted List")
                     && !(unorderedListBackingList instanceof LinkedList<String>)) {
-                unorderedListBackingList = new LinkedList<>();
+                unorderedListBackingList = new LinkedList<>(unorderedListBackingList);
+                unorderedList = new UnorderedList(unorderedListBackingList);
                 unsortedListLLButton.setBackground(greenBackground);
                 unsortedListALButton.setBackground(null);
-                processFile();
+                System.out.println(orderedList.getBackingClass());
+                System.out.println(unorderedList.getBackingClass());
             } else if(listType.equals("Sorted List")
                     && !(orderedListBackingList instanceof LinkedList<String>)) {
-                orderedListBackingList = new LinkedList<>();
+                orderedListBackingList = new LinkedList<>(orderedListBackingList);
+                orderedList = new OrderedList(orderedListBackingList);
                 sortedListLLButton.setBackground(greenBackground);
                 sortedListALButton.setBackground(null);
-                processFile();
+                System.out.println(orderedList.getBackingClass());
+                System.out.println(unorderedList.getBackingClass());
             }
         } else {
             if(listType.equals("Unsorted List")
                     && !(unorderedListBackingList instanceof ArrayList<String>)) {
-                unorderedListBackingList = new ArrayList<>();
+                unorderedListBackingList = new ArrayList<>(unorderedListBackingList);
+                unorderedList = new UnorderedList(unorderedListBackingList);
                 unsortedListALButton.setBackground(greenBackground);
                 unsortedListLLButton.setBackground(null);
-                processFile();
+                System.out.println(orderedList.getBackingClass());
+                System.out.println(unorderedList.getBackingClass());
             } else if(listType.equals("Sorted List")
                     && !(orderedListBackingList instanceof ArrayList<String>)) {
-                orderedListBackingList = new ArrayList<>();
+                orderedListBackingList = new ArrayList<>(orderedListBackingList);
+                orderedList = new OrderedList(orderedListBackingList);
                 sortedListALButton.setBackground(greenBackground);
                 sortedListLLButton.setBackground(null);
-                processFile();
+                System.out.println(orderedList.getBackingClass());
+                System.out.println(unorderedList.getBackingClass());
             }
         }
+
     }
 
     private void processFile() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         try (Scanner reader = new Scanner(dataFile)) {
-            boolean sameBackingClass = unorderedListBackingList.getClass()
-                    .equals(orderedListBackingList.getClass());
             while(reader.hasNextLine()) {
                 String line = reader.nextLine();
                 unorderedListBackingList.add(line);
-                if(!sameBackingClass) {
-                    orderedListBackingList.add(line);
-                }
+                orderedListBackingList.add(line);
             }
             unorderedList = new UnorderedList(unorderedListBackingList);
-            if(!sameBackingClass) {
-                orderedList = new OrderedList(orderedListBackingList);
-            } else {
-                orderedList = new OrderedList(unorderedListBackingList);
-            }
+            orderedList = new OrderedList(orderedListBackingList);
             binarySearchTree = new BinarySearchTree(unorderedListBackingList);
         } catch (IOException e) {
             alert.setContentText("The file could not be read, please try again");
