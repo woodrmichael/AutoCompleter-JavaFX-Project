@@ -52,7 +52,7 @@ DONE11
 
 * [x] Commit 1 "ListMap Stubs"
     - Create the `ListMap` class and stub out all required methods
-* [ ] Commit 2 "ListMap Implementation"
+* [x] Commit 2 "ListMap Implementation"
     - Implement the `ListMap` class
 * [ ] Commit 3 "Trie Stubs"
     - Create the `Trie` class and stub out all required methods

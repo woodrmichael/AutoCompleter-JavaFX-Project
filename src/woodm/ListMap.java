@@ -7,8 +7,10 @@
  */
 package woodm;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,43 +32,65 @@ public class ListMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public int size() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
     public boolean containsKey(Object key) {
-        return false;
+        boolean found = false;
+        for(int i = 0; !found && i < this.entries.size(); i++) {
+            if(this.entries.get(i).getKey().equals(key)) {
+                found = true;
+            }
+        }
+        return found;
     }
 
     @Override
     public V get(Object key) {
-        return null;
+        V value = null;
+        for(int i = 0; value == null && i < this.entries.size(); i++) {
+            if(this.entries.get(i).getKey().equals(key)) {
+                value = this.entries.get(i).getValue();
+            }
+        }
+        return value;
     }
 
     @Override
-    public V put(Object key, Object value) {
-        return null;
+    public V put(K key, V value) {
+        V oldValue = this.remove(key);
+        this.entries.add(new AbstractMap.SimpleEntry<>(key, value));
+        return oldValue;
     }
 
     @Override
     public V remove(Object key) {
-        return null;
+        boolean removed = false;
+        V value = null;
+        for(int i = 0; !removed && i < this.entries.size(); i++) {
+            if(this.entries.get(i).getKey().equals(key)) {
+                value = this.entries.remove(i).getValue();
+                removed = true;
+            }
+        }
+        return value;
     }
 
     @Override
     public Set<Entry<K, V>> entrySet() {
-        return Set.of();
+        return new HashSet<>(this.entries);
+    }
+
+    @Override
+    public void clear() {
+        this.entries.clear();
+    }
+
+    @Override
+    public int size() {
+        return this.entries.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.entries.isEmpty();
     }
 
     @Override
