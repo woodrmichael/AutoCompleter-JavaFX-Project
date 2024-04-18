@@ -37,6 +37,7 @@ public class OrderedList implements AutoCompleter {
         this.items.addAll(unique);
         Collections.sort(items);
     }
+
     @Override
     public boolean add(String word) throws IllegalArgumentException {
         if(word == null || word.isEmpty()) {

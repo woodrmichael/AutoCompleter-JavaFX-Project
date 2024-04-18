@@ -50,7 +50,7 @@ DONE11
 
 ## [Link to Lab 13 assignment](https://csse.msoe.us/csc1120/lab13)
 
-* [ ] Commit 1 "ListMap Stubs"
+* [x] Commit 1 "ListMap Stubs"
     - Create the `ListMap` class and stub out all required methods
 * [ ] Commit 2 "ListMap Implementation"
     - Implement the `ListMap` class
