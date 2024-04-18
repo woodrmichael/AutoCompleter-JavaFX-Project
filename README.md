@@ -54,7 +54,7 @@ DONE11
     - Create the `ListMap` class and stub out all required methods
 * [x] Commit 2 "ListMap Implementation"
     - Implement the `ListMap` class
-* [ ] Commit 3 "Trie Stubs"
+* [x] Commit 3 "Trie Stubs"
     - Create the `Trie` class and stub out all required methods
 * [ ] Commit 4 "Lab completed"
     - Update your code based on feedback from your instructor (if available)
