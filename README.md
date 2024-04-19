@@ -56,11 +56,11 @@ DONE11
     - Implement the `ListMap` class
 * [x] Commit 3 "Trie Stubs"
     - Create the `Trie` class and stub out all required methods
-* [ ] Commit 4 "Lab completed"
+* [x] Commit 4 "Lab completed"
     - Update your code based on feedback from your instructor (if available)
     - Finish all assignment requirements.
 
-D-O-N-E-13
+DONE13
 
 ## [Link to Lab 14 assignment](https://csse.msoe.us/csc1120/lab14)
 

@@ -47,6 +47,8 @@ class AutoCompleterTest {
     void addTest() {
         assertTrue(autoCompleter.add("Hello"));
         assertFalse(autoCompleter.add("Hello"));
+        assertTrue(autoCompleter.add("hello"));
+        assertTrue(autoCompleter.add("help"));
         assertThrows(IllegalArgumentException.class, () -> autoCompleter.add(""));
         assertThrows(IllegalArgumentException.class, () -> autoCompleter.add(null));
     }
@@ -58,6 +60,8 @@ class AutoCompleterTest {
         assertEquals(1, autoCompleter.size());
         autoCompleter.add("Hello");
         assertEquals(1, autoCompleter.size());
+        autoCompleter.add("help");
+        assertEquals(2, autoCompleter.size());
     }
 
     @Test
@@ -65,6 +69,8 @@ class AutoCompleterTest {
         autoCompleter.add("Hello");
         assertTrue(autoCompleter.exactMatch("Hello"));
         assertFalse(autoCompleter.exactMatch("hello"));
+        autoCompleter.add("help");
+        assertTrue(autoCompleter.exactMatch("help"));
         assertFalse(autoCompleter.exactMatch(null));
         assertFalse(autoCompleter.exactMatch(""));
     }
@@ -80,16 +86,20 @@ class AutoCompleterTest {
         String[] helMatches = {"hello", "hello world", "help!"};
         String[] hMatches = {"hello", "hello world", "hi", "help!", "h"};
         String[] matches = {"hello", "hello world", "Hello", "hi", "help!", "h"};
-        if(autoCompleter instanceof OrderedList || autoCompleter instanceof BinarySearchTree) {
-            Arrays.sort(helMatches);
-            Arrays.sort(hMatches);
-            Arrays.sort(matches);
-        }
-        assertArrayEquals(helMatches, autoCompleter.allMatches("hel"));
-        assertArrayEquals(hMatches, autoCompleter.allMatches("h"));
+        Arrays.sort(helMatches);
+        Arrays.sort(hMatches);
+        Arrays.sort(matches);
+        String[] actualHelMatches = autoCompleter.allMatches("hel");
+        String[] actualHMatches = autoCompleter.allMatches("h");
+        String[] actualAllMatches = autoCompleter.allMatches("");
+        Arrays.sort(actualHelMatches);
+        Arrays.sort(actualHMatches);
+        Arrays.sort(actualAllMatches);
+        assertArrayEquals(helMatches, actualHelMatches);
+        assertArrayEquals(hMatches, actualHMatches);
         assertArrayEquals(new String[0], autoCompleter.allMatches(null));
         assertArrayEquals(new String[0], autoCompleter.allMatches("HI"));
-        assertArrayEquals(matches, autoCompleter.allMatches(""));
+        assertArrayEquals(matches, actualAllMatches);
     }
 
     @Test

@@ -37,6 +37,10 @@ public class Controller {
     @FXML
     private TextField searchBar;
     @FXML
+    private Label totalSizeLabel;
+    @FXML
+    private Label searchSizeLabel;
+    @FXML
     private ListView<String> listView;
     @FXML
     private TextField uLExactTime;
@@ -51,6 +55,10 @@ public class Controller {
     @FXML
     private TextField bSTAllMatchesTime;
     @FXML
+    private TextField trieExactTime;
+    @FXML
+    private TextField trieAllMatchesTime;
+    @FXML
     private Button unsortedListALButton;
     @FXML
     private Button unsortedListLLButton;
@@ -62,6 +70,7 @@ public class Controller {
     private AutoCompleter unorderedList;
     private AutoCompleter orderedList;
     private AutoCompleter binarySearchTree;
+    private AutoCompleter trie;
     private List<String> unorderedListBackingList;
     private List<String> orderedListBackingList;
     private final Background greenBackground;
@@ -152,6 +161,8 @@ public class Controller {
             unorderedList = new UnorderedList(unorderedListBackingList);
             orderedList = new OrderedList(orderedListBackingList);
             binarySearchTree = new BinarySearchTree(unorderedListBackingList);
+            trie = new Trie(unorderedListBackingList);
+            updateSizeLabels();
         } catch (IOException e) {
             alert.setContentText("The file could not be read, please try again");
             alert.showAndWait();
@@ -162,13 +173,15 @@ public class Controller {
     }
 
     @FXML
-    private void updateList() {
+    private void updateUI() {
         if(searchBar.isEditable()) {
             listView.getItems().clear();
             String text = searchBar.getText();
             updateTimes(unorderedList, text);
             updateTimes(orderedList, text);
             updateTimes(binarySearchTree, text);
+            updateTimes(trie, text);
+            updateSizeLabels();
         }
     }
 
@@ -194,6 +207,9 @@ public class Controller {
         } else if(autoCompleter instanceof BinarySearchTree) {
             bSTExactTime.setText(exactMatchTime);
             bSTAllMatchesTime.setText(allMatchesTime);
+        } else if(autoCompleter instanceof Trie) {
+            trieExactTime.setText(exactMatchTime);
+            trieAllMatchesTime.setText(allMatchesTime);
         } else {
             uLExactTime.setText("");
             uLAllMatchesTime.setText("");
@@ -202,5 +218,10 @@ public class Controller {
             bSTExactTime.setText("");
             bSTAllMatchesTime.setText("");
         }
+    }
+
+    private void updateSizeLabels() {
+        totalSizeLabel.setText("Total Size: " + unorderedList.size());
+        searchSizeLabel.setText("Search Size: " + listView.getItems().size());
     }
 }

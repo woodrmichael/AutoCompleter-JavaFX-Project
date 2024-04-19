@@ -8,22 +8,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="woodm.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="woodm.Controller">
    <children>
       <HBox prefHeight="30.0" prefWidth="300.0">
          <children>
             <Button fx:id="selectFileButton" mnemonicParsing="false" onAction="#selectFile" prefHeight="50.0" text="Select File" />
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="50.0" text="Search" />
-            <TextField fx:id="searchBar" editable="false" onKeyTyped="#updateList" prefHeight="30.0" prefWidth="280.0" />
+            <TextField fx:id="searchBar" editable="false" onKeyTyped="#updateUI" prefHeight="30.0" prefWidth="280.0" />
          </children>
       </HBox>
       <ScrollPane hbarPolicy="NEVER" prefHeight="300.0" prefWidth="400.0" vbarPolicy="ALWAYS">
          <content>
             <ListView fx:id="listView" prefWidth="400.0" />
          </content></ScrollPane>
-      <HBox prefHeight="270.0" prefWidth="400.0">
+      <HBox prefHeight="25.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="248.0" prefWidth="150.0">
+            <Label fx:id="totalSizeLabel" prefHeight="25.0" prefWidth="200.0" text="Total Size: " />
+            <Label fx:id="searchSizeLabel" prefHeight="25.0" prefWidth="200.0" text="Search Size: " />
+         </children>
+      </HBox>
+      <HBox prefHeight="300.0" prefWidth="400.0">
+         <children>
+            <VBox prefHeight="260.0" prefWidth="150.0">
                <children>
                   <HBox prefHeight="20.0" prefWidth="160.0">
                      <children>
@@ -46,6 +52,9 @@
                   <Label prefHeight="20.0" prefWidth="160.0" text="Binary Search Tree" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="All Matches Time" />
+                  <Label prefHeight="20.0" prefWidth="160.0" text="Trie" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="150.0" text="All Matches Time" />
                </children>
             </VBox>
             <VBox prefHeight="248.0" prefWidth="250.0">
@@ -59,6 +68,9 @@
                   <Label prefHeight="20.0" prefWidth="250.0" />
                   <TextField fx:id="bSTExactTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
                   <TextField fx:id="bSTAllMatchesTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <Label prefHeight="20.0" prefWidth="250.0" />
+                  <TextField fx:id="trieExactTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <TextField fx:id="trieAllMatchesTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
                </children>
             </VBox>
          </children>
