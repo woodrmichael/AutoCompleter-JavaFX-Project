@@ -7,7 +7,7 @@
  */
 package woodm;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,12 +70,13 @@ public class UnorderedList implements AutoCompleter {
             if(prefix.isEmpty()) {
                 matches = this.items.toArray(new String[size()]);
             } else {
-                for(int i = 0; i < size(); i++) {
-                    if(this.items.get(i).startsWith(prefix)) {
-                        matches = Arrays.copyOf(matches, matches.length + 1);
-                        matches[matches.length - 1] = this.items.get(i);
+                List<String> matchesList = new ArrayList<>();
+                for(String word : this.items) {
+                    if(word.startsWith(prefix)) {
+                        matchesList.add(word);
                     }
                 }
+                matches = matchesList.toArray(new String[0]);
             }
         }
         return matches;
