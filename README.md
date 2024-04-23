@@ -64,7 +64,7 @@ DONE13
 
 ## [Link to Lab 14 assignment](https://csse.msoe.us/csc1120/lab14)
 
-* [ ] Commit 1 "HashSet Implementation of AutoCompleter"
+* [x] Commit 1 "HashSet Implementation of AutoCompleter"
     - Create the `HashSet` adapter class implementation that implements the `AutoCompleter`
 * [ ] Commit 2 "O() Analysis continued"
     - Create a Word document and place your O() analysis.

@@ -77,11 +77,7 @@ public class Trie implements AutoCompleter {
 
     @Override
     public boolean exactMatch(String target) {
-        boolean found = false;
-        if(target != null && !target.isEmpty()) {
-            found = exactMatch(target, this);
-        }
-        return found;
+        return target != null && !target.isEmpty() && exactMatch(target, this);
     }
 
     private boolean exactMatch(String target, Trie node) {

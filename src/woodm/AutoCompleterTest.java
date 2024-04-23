@@ -23,7 +23,7 @@ class AutoCompleterTest {
 
     @BeforeEach
     void setUp() {
-        autoCompleter = new Trie(new ArrayList<>());
+        autoCompleter = new HashTable(new ArrayList<>());
     }
 
     @AfterEach
@@ -41,6 +41,8 @@ class AutoCompleterTest {
         assertEquals("java.util.TreeSet", autoCompleter.getBackingClass());
         autoCompleter = new Trie(new ArrayList<>());
         assertEquals("woodm.ListMap", autoCompleter.getBackingClass());
+        autoCompleter = new HashTable(new ArrayList<>());
+        assertEquals("java.util.HashSet", autoCompleter.getBackingClass());
     }
 
     @Test
