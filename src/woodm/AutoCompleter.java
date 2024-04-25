@@ -7,12 +7,15 @@
  */
 package woodm;
 
+import java.util.Random;
+
 /**
  * The AutoCompleter interface represents an interface for implementing an auto-completion system
  * in your program. This interface defines methods and functionality related to providing
  * suggestions or completions based on user input.
  */
 public interface AutoCompleter {
+
     /**
      * Adds a word to the AutoCompleter if the word is valid.
      * Duplicates and null values aren't allowed to be added.
@@ -99,5 +102,28 @@ public interface AutoCompleter {
             time = nanoseconds + " nanosecond(s)";
         }
         return time;
+    }
+
+    /**
+     * Generates a string with a set length and random characters in it.
+     * @param length the length of the string.
+     * @return return a string with randomly generated characters in it
+     * with a specified length.
+     *
+     * @throws IllegalArgumentException thrown if the length is less than or equal to 0.
+     */
+    static String getString(int length) throws IllegalArgumentException {
+        if(length <= 0) {
+            throw new IllegalArgumentException("Please ensure the length of the string is " +
+                    "greater than 0.");
+        }
+        StringBuilder str = new StringBuilder();
+        Random generator = new Random();
+        final int lowerBound = 97;
+        final int upperBound = 123;
+        for(int i = 0; i < length; i++) {
+            str.append((char) generator.nextInt(lowerBound, upperBound));
+        }
+        return str.toString();
     }
 }

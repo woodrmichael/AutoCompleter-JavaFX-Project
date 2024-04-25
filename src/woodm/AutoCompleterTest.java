@@ -134,6 +134,22 @@ class AutoCompleterTest {
         nanoseconds = test9;
         assertEquals("14 hour(s) 22 minute(s) 8 second(s)", AutoCompleter.format(nanoseconds));
     }
+
+    @Test
+    void getStringTest() {
+        assertThrows(IllegalArgumentException.class, () -> AutoCompleter.getString(0));
+        assertThrows(IllegalArgumentException.class, () -> AutoCompleter.getString(-1));
+        assertEquals(1, AutoCompleter.getString(1).length());
+        final int length = 100;
+        String str = AutoCompleter.getString(length);
+        boolean isChar = true;
+        for(int i = 0; isChar && i < length; i++) {
+            if(!Character.isLetter(str.charAt(i))) {
+                isChar = false;
+            }
+        }
+        assertTrue(isChar);
+    }
 }
 
 

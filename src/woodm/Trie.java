@@ -16,11 +16,9 @@ import java.util.Map;
  * stores each string as a chain of characters.
  */
 public class Trie implements AutoCompleter {
-
     private boolean endsWord;
     private final Map<Character, Trie> edges;
     private int size;
-
 
     /**
      * Creates a new Trie with no words in it.

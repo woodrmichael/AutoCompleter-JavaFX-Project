@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * A HashTable
+ * A HashTable is a HashSet adapter class. It uses a HashSet as its backing data structure.
  */
 public class HashTable implements AutoCompleter {
     private final HashSet<String> items;
