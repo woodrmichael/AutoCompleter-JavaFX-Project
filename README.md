@@ -66,7 +66,7 @@ DONE13
 
 * [x] Commit 1 "HashSet Implementation of AutoCompleter"
     - Create the `HashSet` adapter class implementation that implements the `AutoCompleter`
-* [ ] Commit 2 "O() Analysis continued"
+* [x] Commit 2 "O() Analysis continued"
     - Create a Word document and place your O() analysis.
 * [ ] Commit 3 "Benchmarking program"
     - Update the required benchmarking program to generate results for all implementations.
