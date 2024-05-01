@@ -50,8 +50,8 @@ public class AutoCompleterBenchmarker {
      */
     public static String getHelp() {
         return "\nThis program is able to generate benchmark results that generate graphs that " +
-                "show the amount of time it takes for the desired AutoCompleter implementations to " +
-                "complete the desired operation as a function of the number of elements" +
+                "show the amount of time it takes for the desired AutoCompleter implementations " +
+                "to complete the desired operation as a function of the number of elements" +
                 " stored in the backing list.\n" +
                 "\n--implementation=[implementation] --backingListType=[backingListType] " +
                 "--operation=[operation] --startSize=[startSize] "
@@ -98,14 +98,16 @@ public class AutoCompleterBenchmarker {
      * a valid type. Valid Implementations are 'UnorderedList', 'OrderedList',
      * 'BinarySearchTree', 'Trie', or 'HashTable'
      */
-    private static AutoCompleter generateAutoCompleter(String implementation, List<String> backingList) {
+    private static AutoCompleter generateAutoCompleter(String implementation,
+                                                       List<String> backingList) {
         return switch (implementation) {
             case "UnorderedList" -> new UnorderedList(backingList);
             case "OrderedList" -> new OrderedList(backingList);
             case "BinarySearchTree" -> new BinarySearchTree(backingList);
             case "Trie" -> new Trie(backingList);
             case "HashTable" -> new HashTable(backingList);
-            default -> throw new IllegalArgumentException("Invalid implementation, please try again.\n");
+            default -> throw new IllegalArgumentException(
+                    "Invalid implementation, please try again.\n");
         };
     }
 
