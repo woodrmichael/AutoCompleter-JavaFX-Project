@@ -56,7 +56,7 @@ public class BenchmarkerFX extends Application {
             }
 
             final LineChart<Number, Number> lineChart = makeLineChart(
-                    operation + " on " + implementation);
+                    operation + " on " + implementation + " (" + backingListType + ")");
             final long[] times = AutoCompleterBenchmarker.runBenchmarks(implementation,
                     backingListType, operation, startSize, multiplier, numberOfSamples);
             final double[][] coordinates = getCoordinatesArray(times, startSize, multiplier);
