@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="woodm.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="woodm.Controller">
    <children>
       <HBox prefHeight="30.0" prefWidth="300.0">
          <children>
@@ -17,7 +17,7 @@
             <TextField fx:id="searchBar" editable="false" onKeyTyped="#updateUI" prefHeight="30.0" prefWidth="280.0" />
          </children>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="300.0" prefWidth="400.0" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="250.0" prefWidth="400.0" vbarPolicy="ALWAYS">
          <content>
             <ListView fx:id="listView" prefWidth="400.0" />
          </content></ScrollPane>
@@ -27,9 +27,9 @@
             <Label fx:id="searchSizeLabel" prefHeight="25.0" prefWidth="200.0" text="Search Size: " />
          </children>
       </HBox>
-      <HBox prefHeight="300.0" prefWidth="400.0">
+      <HBox prefHeight="380.0" prefWidth="400.0">
          <children>
-            <VBox prefHeight="260.0" prefWidth="150.0">
+            <VBox prefHeight="340.0" prefWidth="150.0">
                <children>
                   <HBox prefHeight="20.0" prefWidth="160.0">
                      <children>
@@ -55,6 +55,9 @@
                   <Label prefHeight="20.0" prefWidth="160.0" text="Trie" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
                   <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="150.0" text="All Matches Time" />
+                  <Label prefHeight="20.0" prefWidth="160.0" text="HashTable" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="160.0" text="Exact Query Time" />
+                  <Label alignment="TOP_LEFT" prefHeight="30.0" prefWidth="150.0" text="All Matches Time" />
                </children>
             </VBox>
             <VBox prefHeight="248.0" prefWidth="250.0">
@@ -71,6 +74,9 @@
                   <Label prefHeight="20.0" prefWidth="250.0" />
                   <TextField fx:id="trieExactTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
                   <TextField fx:id="trieAllMatchesTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <Label prefHeight="20.0" prefWidth="250.0" />
+                  <TextField fx:id="hashTableExactTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
+                  <TextField fx:id="hashTableAllMatchesTime" editable="false" prefHeight="30.0" prefWidth="250.0" />
                </children>
             </VBox>
          </children>

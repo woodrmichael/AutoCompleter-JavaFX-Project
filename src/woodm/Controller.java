@@ -59,6 +59,10 @@ public class Controller {
     @FXML
     private TextField trieAllMatchesTime;
     @FXML
+    private TextField hashTableExactTime;
+    @FXML
+    private TextField hashTableAllMatchesTime;
+    @FXML
     private Button unsortedListALButton;
     @FXML
     private Button unsortedListLLButton;
@@ -71,6 +75,7 @@ public class Controller {
     private AutoCompleter orderedList;
     private AutoCompleter binarySearchTree;
     private AutoCompleter trie;
+    private AutoCompleter hashTable;
     private List<String> unorderedListBackingList;
     private List<String> orderedListBackingList;
     private final Background greenBackground;
@@ -162,6 +167,7 @@ public class Controller {
             orderedList = new OrderedList(orderedListBackingList);
             binarySearchTree = new BinarySearchTree(unorderedListBackingList);
             trie = new Trie(unorderedListBackingList);
+            hashTable = new HashTable(unorderedListBackingList);
             updateSizeLabels();
         } catch (IOException e) {
             alert.setContentText("The file could not be read, please try again");
@@ -181,6 +187,7 @@ public class Controller {
             updateTimes(orderedList, text);
             updateTimes(binarySearchTree, text);
             updateTimes(trie, text);
+            updateTimes(hashTable, text);
             updateSizeLabels();
         }
     }
@@ -210,6 +217,9 @@ public class Controller {
         } else if(autoCompleter instanceof Trie) {
             trieExactTime.setText(exactMatchTime);
             trieAllMatchesTime.setText(allMatchesTime);
+        } else if(autoCompleter instanceof HashTable) {
+            hashTableExactTime.setText(exactMatchTime);
+            hashTableAllMatchesTime.setText(allMatchesTime);
         } else {
             uLExactTime.setText("");
             uLAllMatchesTime.setText("");
