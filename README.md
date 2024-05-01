@@ -70,8 +70,8 @@ DONE13
     - Create a Word document and place your O() analysis.
 * [x] Commit 3 "Benchmarking program"
     - Update the required benchmarking program to generate results for all implementations.
-* [ ] Commit 4 "Lab completed"
+* [x] Commit 4 "Lab completed"
     - Update your code based on feedback from your instructor (if available)
     - Finish all assignment requirements, be sure to include the Reflection on Learning section in your report.
 
-D-O-N-E-14
+DONE14
