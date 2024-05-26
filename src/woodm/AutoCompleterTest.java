@@ -151,16 +151,3 @@ class AutoCompleterTest {
         assertTrue(isChar);
     }
 }
-
-
-/*
-  Discussion: What method did you find most difficult to test? Why?
-
-  I thought the allMatches() method was the most difficult to test because
-  I was originally comparing the results of the method to another String array that has the
-  same contents as what was expected. This resulted in the test failing when I used
-  assertEquals because they aren't the same object. I then decided to use Arrays.equals inside
-  the assertEquals and this worked. Then, I found out that the assertArrayEquals is the
-  simplified version of this and that is what I ended up using.
-
-*/
